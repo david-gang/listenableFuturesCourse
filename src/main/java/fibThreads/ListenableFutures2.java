@@ -8,6 +8,7 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,16 +25,19 @@ public class ListenableFutures2 {
                     public void onSuccess(List<Long> result) {
                         System.out.println(result);
                         System.out.println(LocalTime.now());
-                        service.shutdown();
+                        service.shutdownNow();
+                        ListenableFibonacci.shutdown();
 
                     }
 
                     @Override
                     public void onFailure(Throwable t) {
-                        service.shutdown();
+                        service.shutdownNow();
+                        ListenableFibonacci.shutdown();
 
                     }
                 },service);
+
 
 
 

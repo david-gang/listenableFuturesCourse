@@ -26,5 +26,9 @@ public class ListenableFibonacci {
         return Futures.submitAsync(() -> calculate(n),service);
 
     }
+    public static void shutdown() {
+        service.shutdown();
+
+    }
 
 }
